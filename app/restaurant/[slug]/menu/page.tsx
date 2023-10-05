@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import Menu from "../components/Menu";
 import RestaurantNavBar from "../components/RestaurantNavBar";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: 'Open Table | Menu',
@@ -21,7 +22,7 @@ const fetchRestaurantMenu = async (slug: string) => {
   });
 
   if (!restaurant) {
-    throw new Error();
+    notFound()
   }
 
   return restaurant.items;

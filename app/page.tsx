@@ -2,22 +2,14 @@ import { Metadata } from "next";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
 import { PrismaClient, Cuisine, Location, PRICE, Review } from "@prisma/client";
+import { RestaurantCardType } from "@/interfaces";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: 'Open Table',
   description: 'Welcome to open table',
 }
 
-export interface RestaurantCardType {
-  id: number;
-  name: string;
-  main_image: string;
-  cuisine: Cuisine;
-  location: Location;
-  price: PRICE;
-  slug: string;
-  reviews: Review[];
-}
 
 const prisma = new PrismaClient();
 
@@ -34,6 +26,9 @@ const fetchRestaurants = async (): Promise<RestaurantCardType[]> => {
       reviews: true,
     },
   });
+  if(!restaurants){
+    notFound()
+  }
 
   return restaurants;
 };
