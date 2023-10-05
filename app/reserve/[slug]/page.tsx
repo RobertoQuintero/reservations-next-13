@@ -1,5 +1,11 @@
 import { NavBar } from '@/app/components'
 import { Form, Header } from './components'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Open Table | Reservations',
+  description: 'Welcome to open table',
+}
 
 const ReservationPage = () => {
   return (

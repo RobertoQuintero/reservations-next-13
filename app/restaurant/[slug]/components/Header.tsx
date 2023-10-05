@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Header = () => {
+const Header = ({name}:{name:string}) => {
   return (
     <div className="h-96 overflow-hidden">
     <div
